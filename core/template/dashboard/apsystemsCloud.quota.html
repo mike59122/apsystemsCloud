@@ -1,0 +1,116 @@
+<div class="cmd cmd-widget" data-type="info" data-subtype="string" data-cmd_id="#id#" style="padding:10px;">
+
+    <style>
+        
+        .quotaWrap#id# {
+            font-family: Arial, sans-serif;
+            background: #1e1f26;
+            color: #fff;
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.4);
+        }
+        .title#id# {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .bar#id# {
+            width: 100%;
+            height: 12px;
+            background: #333;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 6px 0 10px 0;
+        }
+        .fill#id# {
+            height: 100%;
+            transition: width 0.4s;
+        }
+        .green#id# { background:#4CAF50; }
+        .orange#id# { background:#FF9800; }
+        .red#id# { background:#F44336; }
+
+        .stats#id# {
+            font-size: 13px;
+            margin-bottom: 10px;
+            line-height: 1.4em;
+        }
+
+        .spark#id# {
+            width: 100%;
+            height: 40px;
+        }
+    </style>
+
+    <div class="quotaWrap#id#">
+        <div class="title#id#">Quota APsystems</div>
+
+        <div class="stats#id#">
+            Utilisé : <b><span id="used#id#"></span></b> / <span id="limit#id#"></span><br>
+            Restant : <b><span id="remaining#id#"></span></b><br>
+            Prévision fin de mois : <b><span id="forecast#id#"></span></b>
+        </div>
+
+        <div class="bar#id#">
+            <div id="fill" class="fill#id#"></div>
+        </div>
+
+        <canvas id="spark#id#" class="spark#id#"></canvas>
+    </div>
+
+    <script>
+        (function() {
+            let raw = '#state#';
+            if (!raw || raw.trim() === '') return;
+
+            let data = {};
+            try { data = JSON.parse(raw); } catch(e) { return; }
+
+            let used = data.used || 0;
+            let limit = data.limit || 1000;
+            let remaining = data.remaining || 0;
+            let percent = data.percent || 0;
+            let forecast = data.forecast || 0;
+            let history = data.history || [];
+
+            document.getElementById("used#id#").innerHTML = used;
+            document.getElementById("limit#id#").innerHTML = limit;
+            document.getElementById("remaining#id#").innerHTML = remaining;
+            document.getElementById("forecast#id#").innerHTML = forecast;
+
+            let fill = document.getElementById("fill#id#");
+            fill.style.width = percent + "%";
+
+            if (percent < 60) fill.classList.add("green#id#");
+            else if (percent < 85) fill.classList.add("orange#id#");
+            else fill.classList.add("#id#red");
+
+            /* --- Sparkline --- */
+            let canvas = document.getElementById("spark#id#");
+            let ctx = canvas.getContext("2d");
+
+            let w = canvas.width;
+            let h = canvas.height;
+
+            ctx.clearRect(0,0,w,h);
+            ctx.strokeStyle = "#4CAF50";
+            ctx.lineWidth = 2;
+
+            if (history.length > 1) {
+                let max = Math.max(...history);
+                let min = Math.min(...history);
+
+                ctx.beginPath();
+                history.forEach((v,i)=>{
+                    let x = (i/(history.length-1))*w;
+                    let y = h - ((v-min)/(max-min))*h;
+                    if (i===0) ctx.moveTo(x,y);
+                    else ctx.lineTo(x,y);
+                });
+                ctx.stroke();
+            }
+        })();
+    </script>
+
+</div>

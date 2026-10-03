@@ -1,0 +1,13 @@
+{
+  "name": "Quota APsystems - Tout en un",
+  "type": "info",
+  "subtype": "string",
+  "template": "dashboard",
+  "display": {
+    "icon": "<i class='fas fa-battery-half'></i>"
+  },
+  "replace": {
+    "#state#": "#state#",
+    "#id#": "#id#"
+  }
+}

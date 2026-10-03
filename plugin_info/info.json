@@ -1,0 +1,17 @@
+{
+  "id": "apsystemsCloud",
+  "name": "APsystems Cloud v2",
+  "logicalId": "apsystemsCloud",
+  "category": "energy",
+  "hasDependency": 0,
+  "hasOwnDeamon": 0,
+  "maxDependancyInstallTime": 0,
+  "require": "4.4",
+  "version": "1.0",
+  "author": "Michael OZAER",
+  "licence": "AGPL",
+  "description": "Intégration de l'API Cloud APsystems v2 avec gestion de quota",
+  "language": "fr_FR",
+  "changelog": "docs/changelog.md",
+  "documentation": "docs/fr_FR/index.md"
+}

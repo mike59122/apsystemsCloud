@@ -1,0 +1,40 @@
+<div style="width: 100%; padding: 10px; box-sizing: border-box;">
+  <svg viewBox="0 0 300 140" width="100%" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Fond -->
+    <rect x="0" y="0" width="300" height="140" rx="12" fill="#1e1e1e" />
+
+    <!-- Titre -->
+    <text x="150" y="22" fill="#ffffff" font-size="16" text-anchor="middle" font-weight="600">
+      APsystems Cloud
+    </text>
+
+    <!-- Puissance instantanée -->
+    <text x="20" y="55" fill="#aaaaaa" font-size="12">Puissance</text>
+    <text x="20" y="75" fill="#ffffff" font-size="22" font-weight="600">
+      #power#
+    </text>
+    <text x="95" y="75" fill="#ffaa00" font-size="14">W</text>
+
+    <!-- Production du jour -->
+    <text x="20" y="110" fill="#aaaaaa" font-size="12">Jour</text>
+    <text x="20" y="130" fill="#ffffff" font-size="22" font-weight="600">
+      #energy_day#
+    </text>
+    <text x="95" y="130" fill="#00d0ff" font-size="14">Wh</text>
+
+    <!-- Quota -->
+    <rect x="150" y="50" width="130" height="12" rx="6" fill="#333" />
+    <rect x="150" y="50" width="#quota_percent#" height="12" rx="6" fill="#00c853" />
+    <text x="215" y="45" fill="#aaaaaa" font-size="12" text-anchor="middle">Quota</text>
+    <text x="215" y="70" fill="#ffffff" font-size="14" text-anchor="middle">
+      #quota_count# / #quota_max#
+    </text>
+
+    <!-- Dernière mise à jour -->
+    <text x="215" y="120" fill="#aaaaaa" font-size="12" text-anchor="middle">
+      MAJ : #last_update#
+    </text>
+
+  </svg>
+</div>
